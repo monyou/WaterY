@@ -11,12 +11,12 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icon-192x192.png', 'icon-512x512.png'],
       manifest: {
-        id: 'com.smechkov.watery',
         name: 'WaterY',
         short_name: 'WaterY',
         description: 'A simple water consumption tracker',
         lang: 'en',
         dir: 'ltr',
+        scope: '/',
         start_url: '/',
         orientation: 'portrait',
         display: 'standalone',

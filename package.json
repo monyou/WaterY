@@ -12,6 +12,7 @@
     "@solidjs/router": "^0.15.3",
     "@supabase/supabase-js": "^2.50.0",
     "@tailwindcss/vite": "^4.1.10",
+    "pushy-sdk-web": "^1.0.24",
     "solid-js": "^1.9.5",
     "tailwindcss": "^4.1.10",
     "zod": "^3.25.67"

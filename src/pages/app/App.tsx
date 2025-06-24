@@ -3,6 +3,7 @@ import AuthGuard from "../../components/AuthGuard";
 import { supabase } from "../../utils/supabase";
 import { addToast } from "../../utils/toast";
 import { hideLoader, showLoader } from "../../utils/loader";
+import Pushy from "pushy-sdk-web";
 
 const AppPage = () => {
     const navigate = useNavigate();
@@ -16,6 +17,24 @@ const AppPage = () => {
                 <img src="/icon-512x512.png" alt="logo" class="-mt-15" />
                 <section>
                     <h1 class="text-2xl">Dashboard</h1>
+                    <button
+                        onClick={() => {
+                            Pushy.register({
+                                appId: "685ac3622a85fb9978f53b04",
+                            })
+                                .then((deviceToken: string) => {
+                                    console.log("Device token:", deviceToken);
+                                })
+                                .catch((error: any) => {
+                                    addToast(
+                                        "Registration failed: " + error.message,
+                                        "error"
+                                    );
+                                });
+                        }}
+                    >
+                        Notifications
+                    </button>
                     <button
                         class="mt-4 mx-auto block px-4 py-2 bg-primary hover:bg-secondary text-white rounded cursor-pointer"
                         onClick={async () => {
