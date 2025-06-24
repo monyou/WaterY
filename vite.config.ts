@@ -20,8 +20,8 @@ export default defineConfig({
         start_url: '/',
         orientation: 'portrait',
         display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#317EFB',
+        background_color: '#fcfbfb',
+        theme_color: '#016dd6',
         launch_handler: {
           client_mode: 'auto'
         },
