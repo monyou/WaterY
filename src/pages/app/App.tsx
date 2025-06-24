@@ -18,16 +18,6 @@ const AppPage = () => {
                     <h1 class="text-2xl">Dashboard</h1>
                     <button
                         class="mt-4 mx-auto block px-4 py-2 bg-primary hover:bg-secondary text-white rounded cursor-pointer"
-                        onClick={() => {
-                            (window as any).OneSignal.push(() => {
-                                (window as any).OneSignal.showNativePrompt(); // manually ask for push
-                            });
-                        }}
-                    >
-                        Notifications
-                    </button>
-                    <button
-                        class="mt-4 mx-auto block px-4 py-2 bg-primary hover:bg-secondary text-white rounded cursor-pointer"
                         onClick={async () => {
                             showLoader();
                             const { error } = await supabase.auth.signOut();
