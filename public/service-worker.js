@@ -18,12 +18,12 @@ self.addEventListener("notificationclick", (event) => {
     event.waitUntil(
         self.clients.matchAll({ type: "window" }).then((clientsArr) => {
             const hadWindow = clientsArr.some((windowClient) => {
-                return windowClient.url === "/"
+                return windowClient.url === "/app"
                     ? (windowClient.focus(), true)
                     : false;
             });
             if (!hadWindow) {
-                self.clients.openWindow("/");
+                self.clients.openWindow("/app");
             }
         })
     );
