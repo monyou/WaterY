@@ -9,11 +9,7 @@ export default defineConfig({
     solidPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
-      injectRegister: 'auto',
-      devOptions: {
-        enabled: true,
-        type: 'module',
-      },
+      injectRegister: null,
       includeAssets: ['favicon.svg', 'icon-192x192.png', 'icon-512x512.png'],
       manifest: {
         id: '/',
@@ -45,8 +41,6 @@ export default defineConfig({
           },
         ],
       },
-      srcDir: '/',
-      filename: 'service-worker.js',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
         runtimeCaching: [
