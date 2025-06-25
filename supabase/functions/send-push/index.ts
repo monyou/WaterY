@@ -28,13 +28,13 @@ serve(async (req: Request) => {
             );
         }
 
-        webpush.importVapidKeys(JSON.parse(vapidKeysJson));
+        const vapidKeys = await webpush.importVapidKeys(JSON.parse(vapidKeysJson));
         const appServer = await webpush.ApplicationServer.new({
             contactInformation: "mailto:monyou@abv.bg",
-            vapidKeys: JSON.parse(vapidKeysJson),
+            vapidKeys
         });
         const sub = appServer.subscribe(subscription);
-        sub.pushMessage(JSON.stringify(payload), {});
+        await sub.pushTextMessage(JSON.stringify(payload), {});
 
         return new Response(JSON.stringify({ success: true }), {
             status: 200,
