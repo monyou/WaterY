@@ -1,5 +1,4 @@
 self.addEventListener("push", (event) => {
-    console.log("Push event data received:", event.data);
     const data = event.data?.json() ?? {
         title: "Notification",
         body: "No content",

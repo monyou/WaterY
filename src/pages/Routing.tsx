@@ -5,7 +5,7 @@ import WebLayout from "../layouts/web";
 
 const Home = lazy(() => import("./home/Home"));
 const Login = lazy(() => import("./login/Login"));
-const App = lazy(() => import("./app/App"));
+const Dashboard = lazy(() => import("./dashboard/Dashboard"));
 
 const Routing = () => {
     const [isMobile, setIsMobile] = createSignal(false);
@@ -21,7 +21,7 @@ const Routing = () => {
 
     const mainAppPages = (
         <>
-            <Route path={"/"} component={App} />
+            <Route path={"/"} component={Dashboard} />
         </>
     );
 

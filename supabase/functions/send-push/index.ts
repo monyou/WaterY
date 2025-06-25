@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import * as webpush from "jsr:@negrel/webpush";
 
+// To generate VAPID json: deno run https://raw.githubusercontent.com/negrel/webpush/master/cmd/generate-vapid-keys.ts
 const vapidKeysJson = Deno.env.get("VAPID_KEYS")!;
 
 serve(async (req: Request) => {

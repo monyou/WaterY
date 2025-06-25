@@ -4,7 +4,7 @@ import { supabase } from "../../utils/supabase";
 import { addToast } from "../../utils/toast";
 import { hideLoader, showLoader } from "../../utils/loader";
 
-const AppPage = () => {
+const DashboardPage = () => {
     const navigate = useNavigate();
 
     return (
@@ -37,4 +37,4 @@ const AppPage = () => {
     );
 };
 
-export default AppPage;
+export default DashboardPage;
