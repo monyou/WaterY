@@ -8,7 +8,7 @@ export default defineConfig({
     tailwindcss(),
     solidPlugin(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
       injectRegister: null,
       includeAssets: ['favicon.svg', 'icon-192x192.png', 'icon-512x512.png'],
       manifest: {
