@@ -45,8 +45,8 @@ export default defineConfig({
           },
         ],
       },
-      srcDir: 'src',
-      filename: 'sw.js',
+      srcDir: '/',
+      filename: 'service-worker.js',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
         runtimeCaching: [
