@@ -17,9 +17,3 @@ render(
     ),
     root!
 );
-
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/push-sw.js").then((reg) => {
-        console.log("Push Notifications Service worker registered", reg);
-    });
-}
