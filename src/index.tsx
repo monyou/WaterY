@@ -21,8 +21,8 @@ render(
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
         .register("/service-worker.js")
-        .then((reg) => {
-            console.log("[App] Custom SW registered:", reg);
+        .then(() => {
+            console.log("[App] Custom SW registered ;)");
         })
         .catch((err) => {
             console.error("[App] SW registration failed:", err);
