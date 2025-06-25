@@ -9,6 +9,11 @@ export default defineConfig({
     solidPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
       includeAssets: ['favicon.svg', 'icon-192x192.png', 'icon-512x512.png'],
       manifest: {
         id: '/',
@@ -37,6 +42,21 @@ export default defineConfig({
             src: 'icon-512x512.png',
             sizes: '512x512',
             type: 'image/png',
+          },
+        ],
+      },
+      srcDir: 'src',
+      filename: 'sw.js',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === 'image',
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'images',
+              expiration: { maxEntries: 10 },
+            },
           },
         ],
       },
