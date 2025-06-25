@@ -1,12 +1,11 @@
 import { useNavigate } from "@solidjs/router";
 import AuthGuard from "../../components/AuthGuard";
-import { onMount } from "solid-js";
 import urlBase64ToUint8Array from "../../utils/urlBase64ToUint8Array";
 
 const HomePage = () => {
     const navigate = useNavigate();
 
-    onMount(async () => {
+    const enableNotifications = async () => {
         if ("serviceWorker" in navigator && "PushManager" in window) {
             const reg = await navigator.serviceWorker.ready;
             const permission = await Notification.requestPermission();
@@ -44,7 +43,7 @@ const HomePage = () => {
                 }, 5000);
             }
         }
-    });
+    };
 
     return (
         <AuthGuard>
@@ -58,6 +57,12 @@ const HomePage = () => {
                 </section>
                 <button
                     class="mt-20 px-4 py-2 bg-primary text-white rounded cursor-pointer hover:bg-secondary transition-colors"
+                    onClick={enableNotifications}
+                >
+                    Notifications
+                </button>
+                <button
+                    class="mt-4 px-4 py-2 bg-primary text-white rounded cursor-pointer hover:bg-secondary transition-colors"
                     onClick={() => navigate("/login")}
                 >
                     Get Started

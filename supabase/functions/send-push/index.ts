@@ -81,6 +81,16 @@ async function encryptPayload(subscription: any, payload: string) {
 }
 
 serve(async (req) => {
+    const corsHeaders = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+    };
+
+    if (req.method === "OPTIONS") {
+        return new Response("OK", { headers: corsHeaders });
+    }
+
     const { subscription, payload } = await req.json();
 
     const { encryptedPayload, headers } = await encryptPayload(subscription, JSON.stringify(payload));
@@ -120,5 +130,5 @@ serve(async (req) => {
         body: encryptedPayload,
     });
 
-    return new Response(JSON.stringify({ status: res.status }), { status: 200 });
+    return new Response(JSON.stringify({ status: res.status }), { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } });
 });
