@@ -1,6 +1,5 @@
 import { useNavigate } from "@solidjs/router";
 import AuthGuard from "../../components/AuthGuard";
-import urlBase64ToUint8Array from "../../utils/urlBase64ToUint8Array";
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -13,9 +12,8 @@ const HomePage = () => {
             if (permission === "granted") {
                 const subscription = await reg.pushManager.subscribe({
                     userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array(
-                        import.meta.env.VITE_PUBLIC_VAPID_KEY!
-                    ),
+                    applicationServerKey:
+                        "BFDdZ5NTvZHEjAiF6IPWtbngyU6n8oxCzpT1scc-soxKjwYQBJ38rMyQfXKbkyMKdwRdvxtTzW5PvFhjGMUNpxk",
                 });
 
                 //TODO: Send subscription to your backend

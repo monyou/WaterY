@@ -1,21 +1,7 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import * as webpush from "jsr:@negrel/webpush";
 
-const PUBLIC_VAPID_KEY = Deno.env.get("PUBLIC_VAPID_KEY")!;
-const PRIVATE_VAPID_KEY = Deno.env.get("PRIVATE_VAPID_KEY")!;
-
-const vapidKeys = {
-    publicKey: PUBLIC_VAPID_KEY,
-    privateKey: PRIVATE_VAPID_KEY,
-};
-
-const vapid = await webpush.VAPID.generate(
-    {
-        subject: "mailto:your@email.com",
-        publicKey: vapidKeys.publicKey,
-        privateKey: vapidKeys.privateKey,
-    },
-);
+const vapidKeysJson = Deno.env.get("VAPID_KEYS")!;
 
 serve(async (req: Request) => {
     const corsHeaders = {
@@ -42,18 +28,13 @@ serve(async (req: Request) => {
             );
         }
 
-        const endpoint = subscription.endpoint;
-        const keys = {
-            auth: subscription.keys.auth,
-            p256dh: subscription.keys.p256dh,
-        };
-
-        await webpush.sendNotification({
-            endpoint,
-            keys,
-            payload: JSON.stringify(payload),
-            vapid,
+        webpush.importVapidKeys(JSON.parse(vapidKeysJson));
+        const appServer = await webpush.ApplicationServer.new({
+            contactInformation: "mailto:monyou@abv.bg",
+            vapidKeys: JSON.parse(vapidKeysJson),
         });
+        const sub = appServer.subscribe(subscription);
+        sub.pushMessage(JSON.stringify(payload), {});
 
         return new Response(JSON.stringify({ success: true }), {
             status: 200,
