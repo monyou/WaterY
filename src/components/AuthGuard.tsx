@@ -1,9 +1,9 @@
-import { createSignal, onMount, type JSX } from "solid-js";
+import { children, createSignal, onMount, type JSX } from "solid-js";
 import { supabase } from "../utils/supabase";
 import { useLocation, useNavigate } from "@solidjs/router";
 
 const AuthGuard = (props: { children: JSX.Element }) => {
-    const safeChildren = () => props.children;
+    const safeChildren = children(() => props.children);
     const navigate = useNavigate();
     const location = useLocation();
     const [showPage, setShowPage] = createSignal(false);

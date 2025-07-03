@@ -2,6 +2,7 @@ import { createSignal, onCleanup, onMount, Show } from "solid-js";
 import GlobalLoader from "./components/Loader";
 import Toast from "./components/Toast";
 import Routing from "./pages/Routing";
+import { StoreProvider } from "./utils/store";
 
 const App = () => {
     const [showUpdate, setShowUpdate] = createSignal(false);
@@ -16,7 +17,7 @@ const App = () => {
     });
 
     return (
-        <>
+        <StoreProvider>
             <Routing />
             <GlobalLoader />
             <Toast />
@@ -32,7 +33,7 @@ const App = () => {
                     </button>
                 </div>
             </Show>
-        </>
+        </StoreProvider>
     );
 };
 
